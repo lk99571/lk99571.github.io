@@ -303,32 +303,15 @@
       
         
           
-            <p><strong>搭建个人博客=域名(外网可访问的地址)+外网服务器(外网存储文件图片的地方)+解析(本地与服务器做映射)</strong></p>
-<font size="5">1.下载git：</font>
-
-<p>方式一(官网下载)：<a href="https://git-scm.com/download/win(到此页面后，稍微等一下会有下载弹框)" target="_blank" rel="noopener">https://git-scm.com/download/win(到此页面后，稍微等一下会有下载弹框)</a></p>
-<p>方式二(csdn下载)：<a href="http://download.csdn.net/download/ainuser/9952103" target="_blank" rel="noopener">http://download.csdn.net/download/ainuser/9952103</a></p>
-<font size="5">安装git(见图)：</font><br><img src="https://i.imgur.com/95LcHxT.jpg" alt=""><br><img src="https://i.imgur.com/mkJhp2s.jpg" alt=""><br><img src="https://i.imgur.com/4HpcyBk.jpg" alt=""><br><img src="https://i.imgur.com/u4k00ns.jpg" alt=""><br><img src="https://i.imgur.com/MXSc4un.jpg" alt=""><br><img src="https://i.imgur.com/1Nwxjn7.jpg" alt=""><br><img src="https://i.imgur.com/jsAQPS2.jpg" alt=""><br><img src="https://i.imgur.com/KzLrSVu.jpg" alt=""><br><br>安装git结束<br><br><font size="5">2.下载node.js：</font><br>下载方式一：<a href="http://nodejs.org/download/" target="_blank" rel="noopener">http://nodejs.org/download/</a><br><br>下载方式二：<a href="https://nodejs.org/en/" target="_blank" rel="noopener">https://nodejs.org/en/</a><br><br>下载方式三：<a href="http://download.csdn.net/download/ainuser/9952074" target="_blank" rel="noopener">http://download.csdn.net/download/ainuser/9952074</a><br><br><font size="5">安装node.js：</font><br><img src="https://i.imgur.com/ELteh8r.jpg" alt=""><br><img src="https://i.imgur.com/5DXv4CZ.jpg" alt=""><br><img src="https://i.imgur.com/vNOXGMi.jpg" alt=""><br><img src="https://i.imgur.com/rpdcy8K.jpg" alt=""><br><img src="https://i.imgur.com/gR2DFcK.jpg" alt=""><br><img src="https://i.imgur.com/vfQzUPz.jpg" alt=""><br><br>安装node.js结束<br><br><font size="5">3.安装hexo：</font><br>首先在本地磁盘中建立一个Hexo文件夹（名字随意）用于存储本地文件(做本地文件保存以及测试使用)<br><br><img src="https://i.imgur.com/kv1OsTj.jpg" alt=""><br><br><font color="red">然后在文件夹中右击打开git命令框</font><br><img src="https://i.imgur.com/WZSvO93.jpg" alt=""><br><br><font color="red">在git命令框中安装Hexo(npm<br> install -g hexo)</font><br><img src="https://i.imgur.com/SFEaYdy.jpg" alt=""><br><br><font color="red">初始化(hexo init)</font><br><img src="https://i.imgur.com/CGdLuld.jpg" alt=""><br><br><font color="red">启动服务(npm install –&gt;hexo server –&gt;hexo clean –&gt;hexo generate –&gt;hexo deploy)</font><br><img src="https://i.imgur.com/LYdhRKA.jpg" alt=""><br><br>浏览器输入<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a>,按理来说应该会出现本地访问页面，但是按照此步骤可能不会出现<br><br><font color="red">注意：访问本地页面的时候hexo server 不可以按ctrl+c停止服务，否则会报404<br></font>
-
-<p>解决：(npm install hexo-deployer-git –save)<br><img src="https://i.imgur.com/JQCpTFN.jpg" alt=""></p>
-<p>重新部署更新<font color="red">(下面这条命令会经常用到)</font></p>
-<p>(hexo<br> clean –&gt;hexo generate –&gt;hexo deploy)</p>
-<p>本地测试:<br><img src="https://i.imgur.com/jEtIOwm.jpg" alt=""></p>
-<font size="5">4.注册github</font><br>地址：<a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a> 输入账号、邮箱、密码,然后点击注册按钮.–&gt;之后验证邮箱<br><br><font size="5">在github上面创建项目(借用github服务器)</font><br><img src="https://i.imgur.com/rIXEpmp.jpg" alt=""><br><img src="https://i.imgur.com/2uiMwF4.jpg" alt=""><br>很多设置信息等都在setting里面大家可以去这里面找想要的设置选项等等信息<br><img src="https://i.imgur.com/8Ld6XpZ.jpg" alt=""><br><font size="5">购买域名：<a href="https://wanwang.aliyun.com/domain/" target="_blank" rel="noopener">https://wanwang.aliyun.com/domain/</a></font><br><font size="5">购买流程</font><br><img src="https://i.imgur.com/yMJIZQY.jpg" alt=""><br><br>下面的流程就跟淘宝购物一样了，别选多余的，就购买域名即可，其他的全家桶就不要购买了<br><img src="https://i.imgur.com/kbnjdi1.jpg" alt=""><br><br>支付成功之后的截图<br><img src="https://i.imgur.com/NwmF3PE.png" alt=""><br><br>然后就是解析(通俗来讲也就是本地与服务器做映射)<br><img src="https://i.imgur.com/ID0z4DD.jpg" alt=""><br><img src="https://i.imgur.com/LST7mKT.jpg" alt=""><br><br>然后设置网站解析(让你输入的IP是这样得到的)<br><br>键盘快捷键win+r输入cmd回车/或者win+x-&gt;a-&gt;是<br>得到如下dos窗口后输入ping ainusers.github.io(ainusers是我的名字，就是上面注册github项目的名字即你的用户名)<br><br>因为你刚才创建的项目已经被放到github服务器上面了，所以你这样相当于租用了github的服务器<br><img src="https://i.imgur.com/76shvCG.jpg" alt=""><br><br>将IP输入到解析网站的弹框中即可完成解析<br><br>还有三个需要设置的地方:<br><br>a：<br><img src="https://i.imgur.com/Bvu2M6E.jpg" alt=""><br><br>b：在D盘Hexo目录下的source中建一个CNAME命名的文件夹(切记没有后缀)<br><br>创建方式<br>右键新建txt文本-&gt;输入你购买的域名<a href="http://www.ainusers.top-&gt;保存关闭" target="_blank" rel="noopener">www.ainusers.top-&gt;保存关闭</a><br>然后快捷键F2或者右键该文本重命名-&gt;将.txt后缀去掉-&gt;会提示文件不可用继续确定即可<br><img src="https://i.imgur.com/SKXpITt.jpg" alt=""><br><br>内容如下所示<br><img src="https://i.imgur.com/qx1Fbm2.jpg" alt=""><br><br>c：绑定域名<br><img src="https://i.imgur.com/9RcYFFY.jpg" alt=""><br><img src="https://i.imgur.com/QBYlyD1.jpg" alt=""><br><img src="https://i.imgur.com/xVY7RKr.jpg" alt=""><br><img src="https://i.imgur.com/kcLZO98.jpg" alt=""><br><font color="red">注意，如果为不可选状态，请先选择Theme Chooser选项，然后选择一个主题，然后再执行上步操作</font>
-
-<p>域名从.github.io后缀修改成你的域名后缀，才可以说明你以上步骤正确。</p>
-<p>我在网上找了一个例子，比如下图所示<br><img src="https://i.imgur.com/JXhMCFi.png" alt=""></p>
-<p>修改_config.yml<br><img src="https://i.imgur.com/EJ1qo3p.jpg" alt=""></p>
-<p>配置github项目连接(<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">type: git</span><br><span class="line">repository: https://github.com/leopardpan/leopardpan.github.io.git</span><br><span class="line">branch: master</span><br></pre></td></tr></table></figure></p>
-<p>):<br><img src="https://i.imgur.com/RBNxTC3.jpg" alt=""></p>
-<p>使git部署</p>
-<p><code>npm install hexo-deployer-git --save</code></p>
-<p>基本的流程到这里快要结束了</p>
-<p>最后执行:(hexo<br> clean –&gt;hexo generate –&gt;hexo deploy)</p>
-<p>你就可以看到你的博客了</p>
-<p>记住，每次修改配置信息或者其他必须要执行上面的步骤，才可以使得配置信息生效。</p>
-
-          
+          搭建个人博客=域名(外网可访问的地址)+外网服务器(外网存储文件图片的地方)+解析(本地与服务器做映
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/06/03/Hexo1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -446,9 +429,16 @@
       
         
           
-            <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>测试一下</p>
+          前言测试一下
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/blog/2018/06/01/hello-world/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
