@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="编程, 技术，yasso.top" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一. 添加spring和mybatis的jar包，注意还有个mybatis-spring.jar  二.搭建项目结构  三.编写applicationContext.xml文件： &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframew">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis+spring整合（一）">
+<meta property="og:url" content="http://yasso.top/blog/2018/06/05/spring+mybatis1/index.html">
+<meta property="og:site_name" content="面向money编程">
+<meta property="og:description" content="一. 添加spring和mybatis的jar包，注意还有个mybatis-spring.jar  二.搭建项目结构  三.编写applicationContext.xml文件： &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframew">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.imgur.com/1xLUXao.png">
+<meta property="og:image" content="https://i.imgur.com/3oLX18R.png">
+<meta property="og:image" content="https://i.imgur.com/IFLMEhW.png">
+<meta property="og:updated_time" content="2018-06-06T02:48:05.369Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mybatis+spring整合（一）">
+<meta name="twitter:description" content="一. 添加spring和mybatis的jar包，注意还有个mybatis-spring.jar  二.搭建项目结构  三.编写applicationContext.xml文件： &amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt; &amp;lt;beans xmlns=&amp;quot;http://www.springframew">
+<meta name="twitter:image" content="https://i.imgur.com/1xLUXao.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yasso.top/blog/2018/06/05/spring+mybatis1/"/>
+
+
+
+
+
+  <title>mybatis+spring整合（一） | 面向money编程</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">面向money编程</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">天下事有难易乎？为之，则难者亦易矣；不为，则易者亦难矣</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yasso.top/blog/2018/06/05/spring+mybatis1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ronin">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="面向money编程">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">mybatis+spring整合（一）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-05T13:36:03+08:00">
+                2018-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>一. 添加spring和mybatis的jar包，注意还有个mybatis-spring.jar</p>
+<p><img src="https://i.imgur.com/1xLUXao.png" alt=""></p>
+<p>二.搭建项目结构</p>
+<p><img src="https://i.imgur.com/3oLX18R.png" alt=""></p>
+<p>三.编写applicationContext.xml文件：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;beans xmlns=&quot;http://www.springframework.org/schema/beans&quot;
+xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:aop=&quot;http://www.springframework.org/schema/aop&quot;
+xmlns:tx=&quot;http://www.springframework.org/schema/tx&quot; xmlns:context=&quot;http://www.springframework.org/schema/context&quot;
+xmlns:mvc=&quot;http://www.springframework.org/schema/mvc&quot;
+xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd&quot;&gt;
+
+&lt;!-- 包扫描 --&gt;
+&lt;context:component-scan base-package=&quot;com.bdqn.zmj&quot; /&gt;
+
+&lt;!-- 引入外部的db.properties文件 --&gt;
+&lt;!-- ctrl+shift+t --&gt;
+&lt;bean class=&quot;org.springframework.beans.factory.config.PropertyPlaceholderConfigurer&quot;&gt;
+&lt;property name=&quot;location&quot; value=&quot;classpath:db.properties&quot; /&gt;
+&lt;/bean&gt;
+
+&lt;!-- 配置数据源 --&gt;
+&lt;!-- 用的是dbcp2连接池 --&gt;
+&lt;bean id=&quot;dataSource&quot; class=&quot;org.apache.commons.dbcp2.BasicDataSource&quot;&gt;
+&lt;property name=&quot;driverClassName&quot; value=&quot;${driver}&quot; /&gt;
+&lt;property name=&quot;url&quot; value=&quot;${url}&quot; /&gt;
+&lt;property name=&quot;username&quot; value=&quot;${user}&quot; /&gt;
+&lt;property name=&quot;password&quot; value=&quot;${password}&quot; /&gt;
+&lt;!-- 连接初始值，连接池启动时创建的连接数量的初始值 默认值是0 --&gt;
+&lt;property name=&quot;initialSize&quot; value=&quot;${initialSize}&quot; /&gt;
+&lt;!-- 最小空闲值.当空闲的连接数少于阀值时，连接池就会预申请去一些连接，以免洪峰来时来不及申请 默认值是0 --&gt;
+&lt;property name=&quot;minIdle&quot; value=&quot;${minIdle}&quot; /&gt;
+&lt;!-- 最大空闲值.当经过一个高峰时间后，连接池可以慢慢将已经用不到的连接慢慢释放一部分，一直减少到maxIdle为止 ，0时无限制 默认值是8 --&gt;
+&lt;property name=&quot;maxIdle&quot; value=&quot;${maxIdle}&quot; /&gt;
+&lt;/bean&gt;
+
+&lt;!-- 引入mybatis县相关配置文件 --&gt;
+&lt;bean id=&quot;sqlSessionFactory&quot; class=&quot;org.mybatis.spring.SqlSessionFactoryBean&quot;&gt;
+&lt;property name=&quot;dataSource&quot; ref=&quot;dataSource&quot;/&gt;
+&lt;!-- mybatis核心文件路径 --&gt;
+&lt;property name=&quot;configLocation&quot; value=&quot;classpath:mybatis-config.xml&quot;/&gt;
+&lt;!-- xml映射文件路径 --&gt;
+&lt;property name=&quot;mapperLocations&quot; value=&quot;classpath:com/bdqn/zmj/mapper/*.xml&quot;/&gt;
+&lt;/bean&gt;
+
+&lt;!-- 配置dao层接口的扫描器 --&gt;
+&lt;bean class=&quot;org.mybatis.spring.mapper.MapperScannerConfigurer&quot;&gt;
+&lt;!-- basePackage 属性是接口文件的包路径。 你可以使用分号或逗号 作为分隔符设置多于一个的包路径 --&gt;
+&lt;property name=&quot;basePackage&quot; value=&quot;com/bdqn/zmj/dao&quot;/&gt;
+&lt;!-- 引入SqlSessionFactoryBean --&gt;
+&lt;property name=&quot;sqlSessionFactoryBeanName&quot; value=&quot;sqlSessionFactory&quot;/&gt;
+&lt;/bean&gt;
+&lt;/beans&gt;
+</code></pre><p>四. 编写mybatis-config.xml文件</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE configuration
+  PUBLIC &quot;-//mybatis.org//DTD Config 3.0//EN&quot;
+  &quot;http://mybatis.org/dtd/mybatis-3-config.dtd&quot;&gt;
+&lt;configuration&gt;
+&lt;!-- 配置实体类的别名 --&gt;
+&lt;typeAliases&gt;
+&lt;package name=&quot;com.bdqn.zmj.entity&quot; /&gt;
+&lt;/typeAliases&gt;
+&lt;/configuration&gt;
+</code></pre><p>五.编写dao接口</p>
+<pre><code>package com.bdqn.zmj.dao;
+import java.util.List;
+import com.bdqn.zmj.entity.User;
+public interface UserDao {
+/**
+* 全查询
+* @return
+*/
+List&lt;User&gt; getList();
+/**
+* 添加用户
+* @param user
+* @return
+*/
+int saveUser(User user);
+}
+</code></pre><p>六.编写service类</p>
+<pre><code>package com.bdqn.zmj.service;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.bdqn.zmj.dao.UserDao;
+import com.bdqn.zmj.entity.User;
+@Service
+public class UserService {
+@Autowired
+UserDao dao;
+public List&lt;User&gt; getUserInfo() {
+return dao.getList();
+}
+public int saveUser(User user) {
+return dao.saveUser(user);
+}
+}
+</code></pre><p>七.编写实体类</p>
+<pre><code>package com.bdqn.zmj.entity
+public class User {
+private String userId;
+private String userName;
+private String passWord;
+private int age;
+public String getUserId() {
+return userId;
+}
+public void setUserId(String userId) {
+this.userId = userId;
+}
+public String getUserName() {
+return userName;
+}
+public void setUserName(String userName) {
+this.userName = userName;
+}
+public String getPassWord() {
+return passWord;
+}
+public void setPassWord(String passWord) {
+this.passWord = passWord;
+}
+public int getAge() {
+return age;
+}
+public void setAge(int age) {
+this.age = age;
+}
+}
+</code></pre><p>八.编写sql映射文件</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; ?&gt;
+&lt;!DOCTYPE mapper
+  PUBLIC &quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;
+  &quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;&gt;
+&lt;mapper namespace=&quot;com.bdqn.zmj.dao.UserDao&quot;&gt;
+&lt;!-- 自定义映射关系 --&gt;
+&lt;resultMap type=&quot;User&quot; id=&quot;userResultMap&quot;&gt;
+&lt;result property=&quot;userId&quot; column=&quot;user_id&quot;/&gt;
+&lt;result property=&quot;userName&quot; column=&quot;user_name&quot;/&gt;
+&lt;result property=&quot;passWord&quot; column=&quot;user_password&quot;/&gt;
+&lt;result property=&quot;age&quot; column=&quot;age&quot;/&gt;
+&lt;/resultMap&gt;
+&lt;select id=&quot;getList&quot; resultMap=&quot;userResultMap&quot;&gt;
+select * from t_user
+&lt;/select&gt;
+&lt;insert id=&quot;saveUser&quot; parameterType=&quot;User&quot;&gt;
+insert into t_user values(#{userId},#{userName},#{passWord},#{age})
+&lt;/insert&gt;
+&lt;/mapper&gt;
+</code></pre><p>九.编写测试类</p>
+<pre><code>package com.bdqn.zmj.servlet;
+import java.util.List;
+import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.alibaba.fastjson.JSON;
+import com.bdqn.zmj.entity.User;
+import com.bdqn.zmj.service.UserService;
+public class TestMain {
+UserService service;
+public void load(){
+ApplicationContext ctx = new ClassPathXmlApplicationContext(&quot;applicationContext.xml&quot;);
+service = (UserService) ctx.getBean(&quot;userService&quot;);
+}
+@Test
+public void test1(){
+//首先创建service
+load();
+//调用方法
+List&lt;User&gt; list = service.getUserInfo();
+for (User user : list) {
+System.out.println(JSON.toJSONString(user));
+}
+}
+
+@Test
+public void test2(){
+//首先创建service
+load();
+//调用方法
+User user = new User();
+user.setUserId(&quot;003&quot;);
+user.setUserName(&quot;王五&quot;);
+user.setPassWord(&quot;1234&quot;);
+user.setAge(30);
+int result = service.saveUser(user);
+System.out.println(result);
+}
+}
+</code></pre><p>十.数据表结构</p>
+<p><img src="https://i.imgur.com/IFLMEhW.png" alt=""></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/blog/2018/06/03/Hexo1/" rel="next" title="Hexo搭建博客教程">
+                <i class="fa fa-chevron-left"></i> Hexo搭建博客教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ronin</p>
+              <p class="site-description motion-element" itemprop="description">技术和生活，我融为一体</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ronin</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
