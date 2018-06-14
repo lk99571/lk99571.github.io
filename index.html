@@ -320,6 +320,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/06/11/Spring/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/06/11/Spring/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -495,6 +505,16 @@ Spring 概述
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/06/05/spring+mybatis1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/06/05/spring+mybatis1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -658,6 +678,16 @@ xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
           
 
           
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/blog/2018/06/03/Hexo1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/blog/2018/06/03/Hexo1/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
           
 
@@ -1042,6 +1072,28 @@ xsi:schemaLocation=&quot;http://www.springframework.org/schema/beans
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'vkATW2bkLY9I9ac5td9l2Du0-gzGzoHsz',
+        appKey: 'xO9RswTalCBGCGLtqeUrPSRV',
+        placeholder: 'ヾﾉ≧∀≦)o老铁，不说两句吗!',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
