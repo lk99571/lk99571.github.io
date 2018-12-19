@@ -272,7 +272,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/blog/2018/12/19/java内存分析/" itemprop="url">java内存分析</a></h1>
+                <a class="post-title-link" href="/blog/2018/12/19/java内存分析/" itemprop="url">java内存分析1</a></h1>
         
 
         <div class="post-meta">
@@ -294,6 +294,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/java学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">java学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -334,9 +356,43 @@
       
         
           
-          #内存分析
+          JVM内存分区栈：
+1、局部变量放置于栈中
+2、线程是私有的，不能实现线程间的共享，生命周期与线程相同
+3、它为java方法服务，每个方法在执行的时候都会创建一个栈帧，用于存储局部变量表、操作数栈、动态链接和方法出口等信息
+堆：
+1、放置new出来的对象，因此该区域经常发生垃圾回收操作
+2、所有线程所共享的一块内存，在虚拟机启动时创建
+方法区：
+1、用来存储已被虚拟机加载的类的信息、常量、静态变量和即时编译器编译后的代码等数据
+2、该区域是被线程共享的
+如图：
 
-          
+Person类
+public class Person {
+    String name;
+    int age;
+
+    public Person(){}
+
+    public Person(String pName,int pAge){
+        name = pName;
+        age = pAge;
+    }
+    public void eat(){
+        System.out.println(&quot;吃饭饭&quot;);
+    }
+    public void sleep(){
+        System.out.println(&quot;睡觉觉&quot;);
+    }
+}
+Test类
+public class Test01 {
+
+    public static void main(String[] args) {
+
+        //去方法区找Person类，发现没有，通过Class Loader(类加载器)加载Person类，将Person
+          ...
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/blog/2018/12/19/java内存分析/#more" rel="contents">
